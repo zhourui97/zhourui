@@ -53,7 +53,7 @@ class Login extends CI_Controller{
         $this->load->library('form_validation');
         
         $this->form_validation->set_rules('username','Username','required');
-        $this->form_validation->set_rules('password','Password','required|callback_password_check');
+        $this->form_validation->set_rules('password','Password','required');
        
         $username = $this->input->post('username');
         $password = $this->input->post('password');
@@ -70,16 +70,16 @@ class Login extends CI_Controller{
         } 
         else 
         {   
-         //   $data = $this->login_model->login($username);
-       //     if($data['password'] == $password) 
-         //    {
+            $data = $this->login_model->login($username);
+            if($data['password'] == $password) 
+            {
                 $this->load->view('login/suc');
-           //  }   
-           //  else
-           //  {
-             //    $this->load->view('login/fail');              
+            }   
+            else
+            {
+                $this->load->view('login/fail');              
            
-            // }
+             }
             
         }        
     }
